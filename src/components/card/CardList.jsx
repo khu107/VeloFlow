@@ -23,9 +23,13 @@ export default function CardList() {
           margin: '-1rem',
         }}
       >
-        {data?.map((info) => {
-          return <Card {...info} key={info.id} />;
-        })}
+        {data ? (
+          data?.map((info) => {
+            return <Card {...info} key={info.id} />;
+          })
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

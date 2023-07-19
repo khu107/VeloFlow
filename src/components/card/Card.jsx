@@ -8,7 +8,9 @@ import {
   TextContainer,
   ContentBody,
 } from './style';
-export default function Card({ id, imageUrl, title, content, username }) {
+export default function Card(prop) {
+  const { id, imageUrl, title, content, username } = prop;
+
   const navigate = useNavigate();
   return (
     <CardWrap>
