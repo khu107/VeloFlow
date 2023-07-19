@@ -4,14 +4,14 @@ import Card from './Card';
 import { useEffect, useState } from 'react';
 
 export default function CardList() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   useEffect(() => {
     api
       .get('')
       .then((res) => {
         setData(res.data);
       })
-      .then((err) => console.log(err));
+      .catch((err) => console.log(err));
   }, []);
 
   return (
