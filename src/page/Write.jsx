@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { styled } from 'styled-components';
 import Button from '../components/button/Button';
-import api from '../axios/api';
+// import api from '../axios/api';
 import Img from '../assets/image/img.png';
+import axios from 'axios';
 
 export default function Write() {
   const [img, setImg] = useState('');
@@ -17,7 +18,7 @@ export default function Write() {
   });
 
   const mutation = useMutation((formData) =>
-    api.post('https://api.minblog-hanghae2.shop/api/post', formData, {
+    axios.post('https://api.minblog-hanghae2.shop/api/post', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
