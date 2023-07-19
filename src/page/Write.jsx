@@ -31,7 +31,7 @@ export default function Write() {
     e.preventDefault();
     try {
       api
-        .post('', formData, {
+        .post('http://3.35.0.151/api/post', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

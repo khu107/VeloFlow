@@ -3,7 +3,6 @@ import { styled } from 'styled-components';
 
 export default function Navbar() {
   const navigate = useNavigate();
-
   if (window.location.pathname === '/create') return null;
   if (window.location.pathname === '/write') return null;
   return (

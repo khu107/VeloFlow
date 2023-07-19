@@ -1,5 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { CardWrap, IMG, Content, Subinfo, Footer } from './style';
+import {
+  CardWrap,
+  IMG,
+  Content,
+  Subinfo,
+  Footer,
+  TextContainer,
+  ContentBody,
+} from './style';
 export default function Card({ id, imageUrl, title, content, username }) {
   const navigate = useNavigate();
   return (
@@ -14,9 +22,9 @@ export default function Card({ id, imageUrl, title, content, username }) {
           <div>
             <h4>{title}</h4>
           </div>
-          <div>
-            <p dangerouslySetInnerHTML={{ __html: content }} />
-          </div>
+          <TextContainer>
+            <ContentBody dangerouslySetInnerHTML={{ __html: content }} />
+          </TextContainer>
           <Subinfo>2023년 7월 10일</Subinfo>
         </Content>
       </div>

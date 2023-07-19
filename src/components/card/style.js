@@ -42,21 +42,8 @@ export const Content = styled.div`
     overflow: hidden;
     color: black;
   }
-  p {
-    margin: 0px 0px 1.5rem;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    height: 3.9375rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: black;
-  }
 `;
+export const TextContainer = styled.div``;
 export const Subinfo = styled.div`
   font-size: 0.75rem;
   line-height: 1.5;
@@ -70,4 +57,51 @@ export const Footer = styled.div`
   line-height: 1.5;
   justify-content: space-between;
   align-items: center;
+`;
+export const ContentBody = styled.div`
+  margin: 0px 0px 1rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  height: 100px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: black;
+  h1 {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 300;
+  }
+  h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 300;
+  }
+  h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 300;
+  }
+  h4 {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 300;
+  }
+  h5 {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 300;
+  }
+  h6 {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 300;
+  }
+  p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 300;
+    color: #495057;
+  }
 `;
