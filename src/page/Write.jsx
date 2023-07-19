@@ -1,10 +1,10 @@
-import { useSelector } from 'react-redux';
-import { styled } from 'styled-components';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from 'react-query';
+import { styled } from 'styled-components';
 import Button from '../components/button/Button';
-import axios from 'axios';
-// import api from '../axios/api';
+import api from '../axios/api';
 import Img from '../assets/image/img.png';
 
 export default function Write() {
@@ -12,36 +12,43 @@ export default function Write() {
   const [user, setUser] = useState('');
   const navigate = useNavigate();
 
+  // useSelector 훅을 사용하여 Redux 스토어의 데이터를 가져옵니다
   const data = useSelector((state) => {
     return state.post;
   });
 
-  const formData = new FormData();
-  formData.append('image', img);
-  let obj = {
-    username: user,
-    title: data.state[0].title,
-    content: data.state[0].value,
-  };
-  formData.append(
-    'post',
-    new Blob([JSON.stringify(obj)], { type: 'application/json' })
+  // React Query useMutation 훅을 사용하여 데이터 전송을 처리합니다.
+  const mutation = useMutation((formData) =>
+    api.post('', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
   );
-  const clickHandler = (e) => {
+
+  const clickHandler = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('image', img);
+    let obj = {
+      username: user,
+      title: data.state[0].title,
+      content: data.state[0].value,
+    };
+    formData.append(
+      'post',
+      new Blob([JSON.stringify(obj)], { type: 'application/json' })
+    );
+
     try {
-      axios
-        .post('https://api.minblog-hanghae2.shop/api/post', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
-        .then((res) => console.log(res));
+      const res = await mutation.mutateAsync(formData);
+      console.log(res);
+      navigate('/');
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
-    navigate('/');
   };
+
   return (
     <WriteWrap>
       <ImgContainer>

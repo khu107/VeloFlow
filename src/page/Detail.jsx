@@ -1,24 +1,24 @@
-// import axios from 'axios';
 import api from '../axios/api';
-import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
-
+import { useQuery } from 'react-query';
 export default function Detail() {
-  const [detail, setDetail] = useState(null);
   const { id } = useParams();
 
-  useEffect(() => {
-    api
-      .get('https://api.minblog-hanghae2.shop/api/post')
-      .then((res) => {
-        console.log(res);
-        setDetail(res.data);
-      })
-      .then((err) => console.log(err));
-  }, []);
+  const getDetails = async () => {
+    const response = await api.get('');
+    return response.data;
+  };
+  const { isLoading, isError, error, data } = useQuery('posts', getDetails);
 
-  const list = detail?.find((item) => String(item.id) === id);
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (isError) {
+    return <h1>{error}</h1>;
+  }
+  const list = data?.find((item) => String(item.id) === id);
 
   return (
     <>

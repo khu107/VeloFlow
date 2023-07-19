@@ -1,19 +1,21 @@
-import axios from 'axios';
-// import api from '../../axios/api';
+import api from '../../axios/api';
 import Card from './Card';
-import { useEffect, useState } from 'react';
-
+import { useQuery } from 'react-query';
 export default function CardList() {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    axios
-      .get('https://api.minblog-hanghae2.shop/api/post')
-      .then((res) => {
-        console.log(res);
-        setData(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  const getPosts = async () => {
+    const response = await api.get('');
+    return response.data;
+  };
+
+  const { isLoading, isError, error, data } = useQuery('posts', getPosts);
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (isError) {
+    return <h1>{error}</h1>;
+  }
 
   return (
     <div>
