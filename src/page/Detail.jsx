@@ -10,7 +10,7 @@ export default function Detail() {
 
   useEffect(() => {
     api
-      .get()
+      .get('https://chimerical-sundae-ab0813.netlify.app/')
       .then((res) => {
         console.log(res);
         setDetail(res.data);
