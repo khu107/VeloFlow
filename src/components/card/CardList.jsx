@@ -1,4 +1,4 @@
-import api from '../../axios/api';
+import axios from 'axios';
 import Card from './Card';
 import { useQuery } from 'react-query';
 
@@ -8,13 +8,15 @@ function Loading() {
 }
 
 // 에러 상태 컴포넌트
-function Error({ error }) {
+function Error(error) {
   return <h1>Error: {error.message}</h1>;
 }
 
 export default function CardList() {
   const getPosts = async () => {
-    const response = await api.get('');
+    const response = await axios.get(
+      'https://api.minblog-hanghae2.shop/api/post'
+    );
     return response.data;
   };
 
