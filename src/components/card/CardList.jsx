@@ -1,15 +1,15 @@
-import axios from 'axios';
+// import axios from 'axios';
+import api from '../../axios/api';
 import Card from './Card';
 import { useEffect, useState } from 'react';
 
 export default function CardList() {
   const [data, setData] = useState(null);
   useEffect(() => {
-    axios
-      .get('https://dummyjson.com/products')
+    api
+      .get('')
       .then((res) => {
-        setData(res.data.products);
-        console.log();
+        setData(res.data);
       })
       .then((err) => console.log(err));
   }, []);
@@ -23,8 +23,8 @@ export default function CardList() {
           margin: '-1rem',
         }}
       >
-        {data?.map((product) => {
-          return <Card {...product} key={product.id} />;
+        {data?.map((info) => {
+          return <Card {...info} key={info.id} />;
         })}
       </div>
     </div>

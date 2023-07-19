@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { CardWrap, IMG, Content, Subinfo, Footer } from './style';
-export default function Card({ id, title, thumbnail, description }) {
+export default function Card({ id, imageUrl, title, content, username }) {
   const navigate = useNavigate();
   return (
     <CardWrap>
       <div onClick={() => navigate(`/${id}`)}>
         <div style={{ position: 'relative' }}>
           <div style={{ paddingTop: '52%' }}>
-            <IMG src={thumbnail} />
+            <IMG src={imageUrl} />
           </div>
         </div>
         <Content>
@@ -15,7 +15,7 @@ export default function Card({ id, title, thumbnail, description }) {
             <h4>{title}</h4>
           </div>
           <div>
-            <p>{description}</p>
+            <p dangerouslySetInnerHTML={{ __html: content }} />
           </div>
           <Subinfo>2023년 7월 10일</Subinfo>
         </Content>
@@ -23,11 +23,15 @@ export default function Card({ id, title, thumbnail, description }) {
       <Footer>
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
           <img
-            src={thumbnail}
+            src={imageUrl}
             alt="rasm"
-            style={{ width: '24px', height: '24px', borderRadius: '50%' }}
+            style={{
+              width: '24px',
+              height: '24px',
+              borderRadius: '50%',
+            }}
           />
-          <span>by hennghe99</span>
+          <span>by {username}</span>
         </div>
       </Footer>
     </CardWrap>

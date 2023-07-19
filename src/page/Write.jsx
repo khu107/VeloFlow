@@ -1,24 +1,46 @@
 import { useSelector } from 'react-redux';
 import { styled } from 'styled-components';
-import Img from '../assets/image/img.png';
-import Button from '../components/button/Button';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../components/button/Button';
+// import axios from 'axios';
+import api from '../axios/api';
+import Img from '../assets/image/img.png';
+
 export default function Write() {
   const [img, setImg] = useState('');
   const [user, setUser] = useState('');
+  const navigate = useNavigate();
+
   const data = useSelector((state) => {
     return state.post;
   });
-  console.log(data.state[0].title);
+
+  const formData = new FormData();
+  formData.append('image', img);
+  let obj = {
+    username: user,
+    title: data.state[0].title,
+    content: data.state[0].value,
+  };
+  formData.append(
+    'post',
+    new Blob([JSON.stringify(obj)], { type: 'application/json' })
+  );
   const clickHandler = (e) => {
     e.preventDefault();
-    const obj = {
-      image: img,
-      username: user,
-      title: data.state[0].title,
-      content: data.state[0].value,
-    };
-    console.log(JSON.stringify(obj));
+    try {
+      api
+        .post('', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then((res) => console.log(res));
+    } catch (err) {
+      console.log(err);
+    }
+    navigate('/');
   };
   return (
     <WriteWrap>
@@ -30,9 +52,8 @@ export default function Write() {
         <input
           type="file"
           id="file"
-          value={img}
           name="file"
-          onChange={(e) => setImg(e.target.value)}
+          onChange={(e) => setImg(e.target.files[0])}
         />
       </ImgContainer>
       <User>

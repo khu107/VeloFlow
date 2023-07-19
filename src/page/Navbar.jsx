@@ -61,8 +61,12 @@ const Btn = styled.button`
   background: #f8f9fa;
   border: 1px solid black;
   color: black;
-  transition: all 0.125s ease-in 0s;
   cursor: pointer;
+  &:hover {
+    background: black;
+    color: white;
+    transition: all 0.125s ease-in 0s;
+  }
 `;
 const Search = styled.input`
   border-top: none;

@@ -1,4 +1,5 @@
-import axios from 'axios';
+// import axios from 'axios';
+import api from '../axios/api';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
@@ -8,31 +9,31 @@ export default function Detail() {
   const { id } = useParams();
 
   useEffect(() => {
-    axios
-      .get(`https://dummyjson.com/products`)
+    api
+      .get()
       .then((res) => {
-        setDetail(res.data.products);
-        console.log(detail);
+        console.log(res);
+        setDetail(res.data);
       })
       .then((err) => console.log(err));
   }, []);
 
   const list = detail?.find((item) => String(item.id) === id);
-  console.log(list);
+
   return (
     <>
       <DetailWrap>
         <DetailHeader>
           <h1>{list?.title}</h1>
           <Detailinfo>
-            <p>userName</p>
-            <p>dataTime</p>
+            <p>{list?.username}</p>
+            <p>{list?.createdAt.substr(0, 10)}</p>
           </Detailinfo>
         </DetailHeader>
-        <Detailimg src={list?.thumbnail} alt="rasm" />
+        <Detailimg src={list?.imageUrl} alt="rasm" />
       </DetailWrap>
       <ContentWrap>
-        <ContentBody>{list?.description}</ContentBody>
+        <ContentBody dangerouslySetInnerHTML={{ __html: list?.content }} />
       </ContentWrap>
     </>
   );
@@ -65,13 +66,12 @@ const Detailinfo = styled.div`
   gap: 20px;
 `;
 const Detailimg = styled.img`
-  max-height: 100vh;
-  max-width: 100%;
   width: auto;
   margin: 2rem auto 0px;
   height: auto;
   object-fit: contain;
   display: block;
+  width: 100%;
 `;
 const ContentWrap = styled.div`
   width: 768px;
