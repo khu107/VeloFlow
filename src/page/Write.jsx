@@ -3,8 +3,8 @@ import { styled } from 'styled-components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/button/Button';
-// import axios from 'axios';
-import api from '../axios/api';
+import axios from 'axios';
+// import api from '../axios/api';
 import Img from '../assets/image/img.png';
 
 export default function Write() {
@@ -30,8 +30,8 @@ export default function Write() {
   const clickHandler = (e) => {
     e.preventDefault();
     try {
-      api
-        .post('http://3.35.0.151/api/post', formData, {
+      axios
+        .post('https://api.minblog-hanghae2.shop/api/post', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
