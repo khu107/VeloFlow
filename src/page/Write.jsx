@@ -12,12 +12,10 @@ export default function Write() {
   const [user, setUser] = useState('');
   const navigate = useNavigate();
 
-  // useSelector 훅을 사용하여 Redux 스토어의 데이터를 가져옵니다
   const data = useSelector((state) => {
     return state.post;
   });
 
-  // React Query useMutation 훅을 사용하여 데이터 전송을 처리합니다.
   const mutation = useMutation((formData) =>
     api.post('', formData, {
       headers: {
