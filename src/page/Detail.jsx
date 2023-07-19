@@ -6,7 +6,9 @@ export default function Detail() {
   const { id } = useParams();
 
   const getDetails = async () => {
-    const response = await api.get('');
+    const response = await api.get(
+      'https://api.minblog-hanghae2.shop/api/post'
+    );
     return response.data;
   };
   const { isLoading, isError, error, data } = useQuery('posts', getDetails);

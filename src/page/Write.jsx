@@ -17,7 +17,7 @@ export default function Write() {
   });
 
   const mutation = useMutation((formData) =>
-    api.post('', formData, {
+    api.post('https://api.minblog-hanghae2.shop/api/post', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
