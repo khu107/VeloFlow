@@ -1,14 +1,15 @@
-// import axios from 'axios';
-import api from '../../axios/api';
+import axios from 'axios';
+// import api from '../../axios/api';
 import Card from './Card';
 import { useEffect, useState } from 'react';
 
 export default function CardList() {
   const [data, setData] = useState(null);
   useEffect(() => {
-    api
-      .get('')
+    axios
+      .get('https://api.minblog-hanghae2.shop/api/post')
       .then((res) => {
+        console.log(res);
         setData(res.data);
       })
       .catch((err) => console.log(err));
