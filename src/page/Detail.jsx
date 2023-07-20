@@ -1,12 +1,13 @@
-import api from '../axios/api';
+// import api from '../axios/api';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { useQuery } from 'react-query';
+import axios from 'axios';
 export default function Detail() {
   const { id } = useParams();
 
   const getDetails = async () => {
-    const response = await api.get(
+    const response = await axios.get(
       'https://api.minblog-hanghae2.shop/api/post'
     );
     return response.data;

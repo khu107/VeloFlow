@@ -33,6 +33,7 @@ export default function CardList() {
         style={{
           display: 'flex',
           flexWrap: 'wrap',
+          justifyContent: 'center',
           margin: '-1rem',
         }}
       >

@@ -55,6 +55,8 @@ const HomeWrap = styled.div`
   }
 `;
 const HomeTop = styled.div`
+  border: 1px solid red;
+
   margin-top: 1.5rem;
   display: flex;
   -webkit-box-pack: justify;
