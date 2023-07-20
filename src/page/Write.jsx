@@ -42,7 +42,8 @@ export default function Write() {
     try {
       const res = await mutation.mutateAsync(formData);
       console.log(res);
-      window.location.href('/');
+      let newloc = '/';
+      window.location.href = newloc;
       // navigate('/');
     } catch (err) {
       console.error(err);
