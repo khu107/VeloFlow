@@ -1,17 +1,16 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+
 import { useMutation } from 'react-query';
 import { styled } from 'styled-components';
 import Button from '../components/button/Button';
-// import api from '../axios/api';
+
 import Img from '../assets/image/img.png';
 import axios from 'axios';
 
 export default function Write() {
   const [img, setImg] = useState('');
   const [user, setUser] = useState('');
-  const navigate = useNavigate();
 
   const data = useSelector((state) => {
     return state.post;
@@ -44,7 +43,6 @@ export default function Write() {
       console.log(res);
       let newloc = '/';
       window.location.href = newloc;
-      // navigate('/');
     } catch (err) {
       console.error(err);
     }

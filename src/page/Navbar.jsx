@@ -8,9 +8,9 @@ export default function Navbar() {
   return (
     <NavbarWarp>
       <NavbarContainer>
-        <div>
+        <Logo onClick={() => navigate('/')}>
           <h2>VeloFlow</h2>
-        </div>
+        </Logo>
         <Right>
           <Search type="text" placeholder="Search" />
           <Btn onClick={() => navigate('/create')}>새 글 작성</Btn>
@@ -40,6 +40,9 @@ const NavbarContainer = styled.div`
   @media (max-width: 900px) {
     width: 600px;
   }
+`;
+const Logo = styled.div`
+  cursor: pointer;
 `;
 
 const Right = styled.div`
