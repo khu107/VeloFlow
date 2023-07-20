@@ -42,7 +42,8 @@ export default function Write() {
     try {
       const res = await mutation.mutateAsync(formData);
       console.log(res);
-      navigate('/');
+      window.location.href('/');
+      // navigate('/');
     } catch (err) {
       console.error(err);
     }
